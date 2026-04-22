@@ -5,6 +5,15 @@ import {
   Trophy, ShieldCheck, HeartPulse, ArrowRight, Download 
 } from 'lucide-react';
 
+// --- CHARGEMENT DES IMAGES LOCALES ---
+import imgHero from '../assets/img-festival.jpg'; 
+import imgExpo from '../assets/img-festival.jpg';
+import imgColloque from '../assets/img-formation.jpg';
+import imgAtelier from '../assets/img-formation.jpg';
+import imgCulture from '../assets/img-labo.jpg';
+import imgSport from '../assets/img-labo.jpg';
+import imgSante from '../assets/img-labo.jpg';
+
 const Festival = () => {
   const stats = [
     { label: "Durée", value: "7 Jours", sub: "consécutifs" },
@@ -15,32 +24,32 @@ const Festival = () => {
 
   const activities = [
     {
-      image: "https://images.unsplash.com/photo-1596450514735-111a2fe02935?q=80&w=800",
+      image: imgExpo,
       title: "Exposition & Foire",
       text: "Stands d'herboristes et vente de produits naturels de la pharmacopée locale."
     },
     {
-      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800",
+      image: imgColloque,
       title: "Colloques & Débats",
       text: "Rencontres scientifiques entre médecine moderne et savoirs ancestraux."
     },
     {
-      image: "https://images.unsplash.com/photo-1523301343968-6a6ebf63c672?q=80&w=800",
+      image: imgAtelier,
       title: "Ateliers Pratiques",
       text: "Démonstrations de préparation de remèdes et transmission de savoirs."
     },
     {
-      image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800",
+      image: imgCulture,
       title: "Espace Culturel",
       text: "Prestations artistiques, contes et rituels de guérison traditionnels."
     },
     {
-      image: "https://images.unsplash.com/photo-1544919396-12056637841c?q=80&w=800",
+      image: imgSport,
       title: "Activités Sportives",
       text: "Course cycliste, football et aérobic pour une santé par le mouvement."
     },
     {
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800",
+      image: imgSante,
       title: "Santé Durable",
       text: "Sensibilisation sur l'encadrement juridique et l'avenir de la tradition."
     }
@@ -56,7 +65,7 @@ const Festival = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
               <span className="bg-yellow-500/20 text-yellow-500 px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest border border-yellow-500/30">
-                1ère Édition • Octobre 2025
+                1ère Édition • 23 au 30 Novembre 2026
               </span>
               <h1 className="text-5xl md:text-7xl font-black mt-6 leading-tight">
                 FESTIVAL <br />
@@ -72,7 +81,7 @@ const Festival = () => {
             <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="hidden lg:block">
               <div className="relative p-4 border border-white/10 rounded-[3rem] bg-white/5">
                 <img 
-                  src="https://images.unsplash.com/photo-1614748866874-8a4426c5409e?q=80&w=800" 
+                  src={imgHero} 
                   alt="Savoirs traditionnels" 
                   className="rounded-[2.5rem] brightness-90 hover:brightness-100 transition-all duration-700 h-[500px] w-full object-cover shadow-2xl"
                 />
@@ -107,7 +116,7 @@ const Festival = () => {
         </p>
       </section>
 
-      {/* --- ACTIVITÉS PHARES (IMAGES DE FOND) --- */}
+      {/* --- ACTIVITÉS PHARES --- */}
       <section className="py-20 bg-stone-100/50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
@@ -157,20 +166,31 @@ const Festival = () => {
 const ActivityCard = ({ image, title, text }) => (
   <motion.div 
     whileHover={{ y: -10 }}
-    className="relative h-[400px] rounded-[2.5rem] overflow-hidden group cursor-pointer shadow-xl"
+    className="relative h-[400px] rounded-[2.5rem] overflow-hidden group cursor-pointer shadow-xl bg-slate-200"
   >
-    <img 
-      src={image} 
-      alt={title} 
-      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-    />
+    {image && (
+      <img 
+        src={image} 
+        alt={title} 
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
+      />
+    )}
     
-    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent opacity-90 md:opacity-80 md:group-hover:opacity-90 transition-opacity"></div>
 
     <div className="absolute inset-0 p-8 flex flex-col justify-end">
-      <div className="w-12 h-1 bg-yellow-500 mb-4 transform origin-left transition-all duration-500 group-hover:w-full"></div>
-      <h3 className="text-2xl font-black text-white mb-2 leading-tight uppercase tracking-wider">{title}</h3>
-      <p className="text-slate-300 text-sm font-medium leading-relaxed opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+      {/* Barre jaune : pleine sur mobile, animée sur desktop */}
+      <div className="h-1 bg-yellow-500 mb-4 rounded-full w-full md:w-12 md:origin-left md:transition-all md:duration-500 md:group-hover:w-full"></div>
+      
+      <h3 className="text-2xl font-black text-white mb-2 leading-tight uppercase tracking-wider">
+        {title}
+      </h3>
+      
+      {/* Texte : visible par défaut sur mobile, effet hover sur desktop (md:) */}
+      <p className="text-slate-200 text-sm font-medium leading-relaxed 
+                    opacity-100 translate-y-0
+                    md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 
+                    transition-all duration-500">
         {text}
       </p>
     </div>

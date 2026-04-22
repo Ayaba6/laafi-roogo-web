@@ -41,9 +41,9 @@ const Contact = () => {
               
               <div className="space-y-6">
                 {[
-                  { icon: <MapPin />, title: "Adresse", detail: "Secteur 23, Saaba, Ouagadougou, Burkina Faso" },
-                  { icon: <Phone />, title: "Téléphone", detail: "+226 25 XX XX XX / +226 70 XX XX XX" },
-                  { icon: <Mail />, title: "Email", detail: "contact@laafiroogo.bf" }
+                  { icon: <MapPin />, title: "Adresse", detail: "Secteur 23, Paspanga, Ouagadougou, Burkina Faso" },
+                  { icon: <Phone />, title: "Téléphone", detail: "+226 71 67 30 57 / +226 64 41 87 95" },
+                  { icon: <Mail />, title: "Email", detail: "contact@laafiroogoburkina.org" }
                 ].map((item, i) => (
                   <motion.div 
                     key={i}
